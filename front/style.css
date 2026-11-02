@@ -1,0 +1,275 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;800&display=swap");
+
+/* ---------- Tokens ---------- */
+:root {
+    --preto: #000000;
+    --superficie: #080808;
+    --superficie-2: #101010;
+    --borda: #1f1f1f;
+    --borda-forte: #333333;
+    --texto: #f2f2f2;
+    --texto-suave: #8a8a8a;
+    --azul: #2f6bff;
+    --azul-claro: #5b8cff;
+    --azul-brilho: rgba(47, 107, 255, 0.28);
+
+    --raio: 14px;
+    --fonte: "Manrope", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background: var(--preto);
+}
+
+body {
+    min-height: 100vh;
+    background: var(--preto);
+    color: var(--texto);
+    font-family: var(--fonte);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 32px 20px;
+}
+
+/* ---------- Cartão de login / cadastro ---------- */
+.campos-login {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    padding: 40px 32px 32px;
+    background: var(--superficie);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    overflow: hidden;
+    animation: entrada 0.5s ease-out both;
+}
+
+/* único detalhe azul de destaque no cartão */
+.campos-login::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 32px;
+    width: 48px;
+    height: 3px;
+    background: var(--azul);
+    border-radius: 0 0 3px 3px;
+}
+
+.campos-login h1 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 8px;
+}
+
+.campos-login p {
+    color: var(--texto-suave);
+    font-size: 0.95rem;
+    margin-bottom: 28px;
+}
+
+/* ---------- Formulário ---------- */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+input {
+    width: 100%;
+    padding: 14px 16px;
+    background: var(--preto);
+    color: var(--texto);
+    font-family: inherit;
+    font-size: 0.95rem;
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input::placeholder {
+    color: #5c5c5c;
+}
+
+input:hover {
+    border-color: var(--borda-forte);
+}
+
+input:focus {
+    border-color: var(--azul);
+    box-shadow: 0 0 0 4px var(--azul-brilho);
+}
+
+/* evita o fundo claro do autopreenchimento do Chrome */
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--texto);
+    -webkit-box-shadow: 0 0 0 1000px var(--preto) inset;
+    caret-color: var(--texto);
+}
+
+/* botão principal (enviar) */
+input[type="submit"] {
+    margin-top: 8px;
+    padding: 14px 16px;
+    background: var(--azul);
+    color: #ffffff;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    border: 1px solid var(--azul);
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+input[type="submit"]:hover {
+    background: var(--azul-claro);
+    border-color: var(--azul-claro);
+}
+
+input[type="submit"]:focus-visible {
+    box-shadow: 0 0 0 4px var(--azul-brilho);
+}
+
+input[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+/* ---------- Botão secundário (link para outra página) ---------- */
+.campos-login a {
+    display: block;
+    margin-top: 16px;
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+.campos-login a:focus-visible {
+    outline: 2px solid var(--azul);
+    outline-offset: 3px;
+}
+
+.campos-login a button {
+    width: 100%;
+    padding: 14px 16px;
+    background: transparent;
+    color: var(--texto);
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid var(--borda-forte);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.campos-login a button:hover {
+    border-color: var(--azul);
+    color: var(--azul-claro);
+    background: var(--superficie-2);
+}
+
+.campos-login a button:active {
+    transform: scale(0.99);
+}
+
+/* ---------- Lista de usuários ---------- */
+.usuarios-cadastrados {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* esconde a seção enquanto a lista estiver vazia */
+.usuarios-cadastrados:not(:has(li)) {
+    display: none;
+}
+
+#lista-usuarios {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#lista-usuarios li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--superficie);
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    color: var(--texto);
+    font-size: 0.9rem;
+    overflow-wrap: anywhere;
+}
+
+#lista-usuarios li::before {
+    content: "";
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    background: var(--azul);
+    border-radius: 50%;
+}
+
+/* ---------- Animação de entrada (uma só, no cartão) ---------- */
+@keyframes entrada {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* ---------- Telas pequenas ---------- */
+@media (max-width: 480px) {
+    main {
+        justify-content: flex-start;
+        padding-top: 48px;
+    }
+
+    .campos-login {
+        padding: 36px 20px 24px;
+    }
+
+    .campos-login::before {
+        left: 20px;
+    }
+
+    .campos-login h1 {
+        font-size: 1.5rem;
+    }
+}
